@@ -1,0 +1,72 @@
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>申请时间</view>
+    <view class='c17'>{{detailData.applyTime}}</view>
+  </view>
+</view>
+
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>部门</view>
+    <view class='c17'>{{detailData.department}}</view>
+  </view>
+</view>
+
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>机型</view>
+    <view class='c17'>{{detailData.types}}</view>
+  </view>
+</view>
+
+
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>序列号</view>
+    <view class='c17'>{{detailData.serialNum}}</view>
+  </view>
+</view>
+<view  class='top flex border-b-1  white-bg between'>
+  <view class='flex fon-28 slos pad-r-20'>
+    <view class='c9f  flex bumen'>描述</view>
+   <view class='textarea' >{{detailData.desDetail}}</view>
+  </view>
+</view>
+
+
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>故障大类</view>
+    <view class='c17'>{{detailData.bigTrouble}}</view>
+  </view>
+</view>
+
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>故障小类</view>
+    <view class='c17'>{{detailData.litTrouble}}</view>
+  </view>
+</view>
+
+
+<view  class='top flex border-b-1 white-bg between pad-34'>
+  <view class='flex fon-28 '>
+    <view class='c9f  flex bumen'>上传照片</view>
+    <view wx:for='{{detailData.img}}' wx:key=''>
+        <image class='jianPi mar-r-20' mode='widthFix' src='{{item}}'></image>
+    </view>
+    
+  </view>
+</view>
+
+
+<view  class='top flex border-b-1 white-bg between pad-34'>
+  <view class='flex fon-28 '>
+    <view class='c9f flex bumen'>上传视频</view>
+    <!-- <image class='jianPi' mode='widthFix' src='../../images/jia_07.png'></image> -->
+    <video src='{{detailData.video}}' class='video' mode='widthFix' hidden='{{video==""}}' controls='false'></video>
+  </view>
+</view>
+
+
+

@@ -1,0 +1,54 @@
+/* pages/feedback/index.wxss */
+.navbar{ 
+ flex: none; 
+ display: flex; 
+
+ -webkit-flex: none; 
+ display: -webkit-flex; 
+ background: #fff; 
+ font-size: 30rpx;
+position: relative;
+
+} 
+.navbar .item{
+ width: 33.333%;
+ position: relative; 
+ text-align: center; 
+ line-height: 80rpx; 
+ font-size: 24rpx;
+ color: #707070;
+
+
+} 
+
+.navbar .item.active{ 
+ color: #0099cc; 
+} 
+.navbar .item.active:after{ 
+ content: ""; 
+ display: block; 
+ position: absolute; 
+ bottom: -1rpx; 
+ left: 0; 
+ right: 0; 
+ height: 4rpx; 
+ background: #0099cc; 
+}
+.top{
+  padding:20rpx 26rpx;
+}
+.middle{
+  padding:27rpx 26rpx;
+}
+.dibu{
+  padding:20rpx 26rpx;
+}
+.red{
+  color: red;
+}
+.kuandu{
+  width: 120rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}

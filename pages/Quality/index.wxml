@@ -1,0 +1,325 @@
+<!-- <scroll-view scroll-y="{{true}}" style="height:100vh;width:100wh;" scroll-into-view="{{scroll}}" 
+> -->
+<view class='wrapper'>
+<view style='padding-bottom:100rpx'>
+<!--手机号  -->
+<view hidden='{{!showPhoneInp}}'>
+<view class='fon-28 t-center tip-phone'>首次进入质保申请需输入手机号，验证成功后无需再次填写!</view>
+  <view   class='top flex border-b-1 between white-bg center'>
+    <view class='flex fon-28  center'>
+      <view class='c9f center flex bumen'>手机号</view>
+      <input placeholder-class='c17' placeholder='请输入手机号' bindinput='phoneInp' type='number'></input>
+    </view>
+    <view class='center'>
+      <button 
+      hidden='{{!show}}' 
+      size='mini' 
+      class='btn-verify' 
+      bindtap="getUserInfo"
+      type='number'
+      >获取验证码</button>
+      <view hidden='{{show}}'>{{time}}s</view>
+    </view>
+  </view>
+  <!--验证码  -->
+  <view  class='top flex border-b-1 center white-bg between'>
+    <view class='flex fon-28  center'>
+      <view class='c9f center flex bumen'>验证码</view>
+      <input placeholder-class='c17' placeholder='' bindinput='verifyInp'></input>
+    </view>
+  </view>
+</view>
+<!--品牌  -->
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+      <view class='c9f center flex bumen'>品牌</view>
+      <view class=' flex center between '>
+        <text wx:if="{{brandNotChecked}}">{{brand}}</text>
+      </view>
+  </view>
+</view>
+<!-- <view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+      <view class='c9f center flex bumen'>品牌</view>
+      <view class='select-big flex center between'>
+        <picker 
+        bindchange="bindPickerBrand" 
+        value="{{brandIndex}}" 
+        range="{{brand}}" 
+        range-key='Rem'
+        class='c17 flex1 fon-28'
+        >
+        <text wx:if="{{brandNotChecked}}">请选择</text>
+        {{brand[brandIndex].name}}
+        </picker>
+        <image class='xia' mode='widthFix' src='../../images/jianXia_03.png'></image>
+      </view>
+  </view>
+</view> -->
+
+<!--代理商  -->
+<view hidden='{{userType != 1}}'  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+      <view class='c9f center flex bumen'>代理商</view>
+      <view class='select-big flex center between'>
+        <picker 
+        bindchange="bindPickerAgent" 
+        value="{{agentIndex}}" 
+        range="{{agent}}" 
+        range-key='AgentName'
+        class='c17 flex1 fon-28'
+        >
+        <text class='' wx:if="{{agentIndex == null}}">请选择 </text>
+        {{agent[agentIndex].AgentName}}
+        </picker>
+        <image class='xia' mode='widthFix' src='../../images/jianXia_03.png'></image>
+      </view>
+  </view>
+</view>
+<view hidden='{{userType == 1}}'  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+      <view class='c9f center flex bumen'>代理商</view>
+      <!-- <view > -->
+        
+        <text class='flex center between'>{{agentName}}</text>
+        
+      <!-- </view> -->
+  </view>
+</view>
+
+<!--客户名称  -->
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>客户名称</view>
+    <input placeholder-class='' placeholder='请输入客户名称'  value='{{clientName}}' bindinput='clientNameInp'></input>
+  </view>
+</view>
+<!--机型压力  -->
+<view  class='top fon-28  flex border-b-1 center white-bg between'>
+  <view class='flex  center'>
+    <view class='c9f center flex bumen'>机型</view>
+  </view>
+  <view class='flex1 center between flex'>
+    <view class='select flex center between'>
+      <picker 
+      bindchange="bindPickerTypes" 
+      value="{{typeIndex}}" 
+      range="{{types}}" 
+      class='c17 flex1 fon-28'
+      >
+      <text class='' wx:if="{{typeIndex == null}}">请选择 </text>
+      {{types[typeIndex]}}
+      </picker>
+      <image class='xia' mode='widthFix' src='../../images/jianXia_03.png'></image>
+    </view>
+    <view class='c9f '> 压力</view>  
+     <view class='picker select flex center between '>
+      <picker 
+      bindchange="bindPickerPress" 
+      value="{{pressIndex}}" 
+      range="{{press}}" 
+      class='c17 flex1 fon-28  picker-inline'>
+      <text class='' wx:if="{{pressIndex == null}}">请选择 </text>
+      {{press[pressIndex]}}
+      </picker>
+      <image class='xia' mode='widthFix' src='../../images/jianXia_03.png'></image>
+    </view>
+  </view>
+</view>
+
+
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>序列号</view>
+    <input placeholder-class='c9f' placeholder='请输入序列号' bindinput='serialNumInp' bindblur='serialblur'   value='{{serialNum}}'></input>
+  </view>
+</view>
+<!--开机日期  -->
+<picker mode="date" value="{{date}}" start="2011-09-01" end="{{today}}"  bindchange="bindDateChange">
+<view  class='top flex border-b-1 center white-bg between'>
+    <view class='flex fon-28  center picker'>
+      <view class='c9f center flex bumen'>开机日期</view>
+      <text class='c17' wx:if='{{!date}}'>请选择</text>
+      {{date}}
+    </view>
+    <image class='jian' mode='widthFix' src='../../images/rig_06.png'></image>
+</view>
+</picker>
+<!--运行小时  -->
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>运行小时</view>
+    <input placeholder-class='' placeholder='请输入纯数字' type='number' bindinput='runTimeInp' value='{{runTime}}'></input>
+  </view>
+</view>
+<!--GPS定位  -->
+<!-- <view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>GPS定位</view>
+    <view>
+    <text hidden='{{addres}}'>未获取到地址</text>{{addres}}</view>
+  </view>
+</view> -->
+
+<!--故障类别选择  -->
+<!-- <picker
+bindchange="bindPickerBigTrouble"
+range="{{troublesBigPick}}"
+value="{{bigIndex}}"
+range-key='Rem'
+>
+    <view  class='top flex border-b-1 center white-bg between'>
+    <view class='flex fon-28  center'>
+        <view class='c9f center flex bumen'>故障部位</view>
+        <text wx:if="{{bigIndex == null}}">请选择</text>
+        {{troublesBigPick[bigIndex].Rem}}
+    </view>
+    <image class='jian' mode='widthFix' src='../../images/rig_06.png'></image>
+    </view>
+</picker>
+
+<picker
+bindchange="bindPickerLitTrouble"
+range="{{troublesLitPick}}"
+value="{{litIndex}}"
+>
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>故障描述</view>
+    <text wx:if="{{litIndex == null}}">请选择 </text>
+    {{troublesLitPick[litIndex]}}
+  </view>
+  <image class='jian' mode='widthFix' src='../../images/rig_06.png'></image>
+</view>
+</picker> -->
+<view id='mid' class='scroll-view-item'></view>
+
+
+<!--问题描述  -->
+<view  class='top flex border-b-1  white-bg between'>
+  <view class='flex fon-28 slos '>
+    <view class='c9f  flex bumen line-text'>问题描述</view>
+   <textarea class='textarea relative' placeholder='请输入问题描述' placeholder-class='' bindinput='descriptionInp' value='{{description}}'></textarea>
+  </view>
+</view>
+<!--索赔内容  -->
+<view  class='top flex border-b-1  white-bg between'>
+  <view class='flex fon-28 slos '>
+    <view class='c9f  flex bumen line-text'>索赔内容</view>
+   <textarea class='textarea relative' placeholder='请输入索赔内容' placeholder-class='' bindinput='claimInp' value='{{claim}}'></textarea>
+  </view>
+</view>
+<!--收货人  -->
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>收货人</view>
+    <input 
+    placeholder-class='' 
+    placeholder='请输入收货人' 
+    value='{{receiver}}' 
+    bindinput='receiverInp'
+    bindblur='receiverBlur'
+    >{{receiver}}</input>
+  </view>
+</view>
+<!--收货联系电话  -->
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>联系电话</view>
+    <input 
+    placeholder-class='' 
+    placeholder='请输入联系电话' 
+    bindinput='teleInp'
+    bindblur='teleBlur' 
+    value='{{tele}}' 
+    type='number'
+    >{{tele}}</input>
+  </view>
+</view>
+<!--收货地址  -->
+<view  class='top flex border-b-1 center white-bg between'>
+  <view class='flex fon-28  center width100'>
+    <view class='c9f center flex bumen'>收货地址</view>
+    <input 
+    placeholder-class='' 
+    class='wid500' 
+    placeholder='请输入收货地址' 
+    value='{{receiveAddres}}' 
+    bindinput='receiveAddresInp'
+    bindblur='receiveAddresBlur'
+    >{{receiveAddres}}</input>
+  </view>
+</view>
+<!--相关照片  -->
+<view  class='top flex  center white-bg between'
+bindtap='uploadImage'
+>
+  <view class='flex fon-28  center'>
+    <view class='c9f center flex bumen'>相关照片</view>
+    <view class='c17'>
+        <text wx:if="{{!imgChoosed}}">(必须有一张铭牌照片)</text>
+        <text wx:else>可上传多张照片</text>
+    </view>
+  </view>
+  <image class='jianPi' mode='widthFix' src='../../images/jia_07.png'></image>
+</view>
+<!-- 图片展示 -->
+<view class='white-bg border-b-1'>
+  <view wx:for='{{showImgs}}' wx:key="index" class='inline-block wid-100 '>
+    <view class='del-btn' bindtap='delImg' data-index='{{index}}'>X</view>
+    <image class='show-img' src='{{item}}' mode='aspectFit' bindtap='preImage' data-path="{{item}}"></image>
+  </view>
+</view>
+<!--视频上传  -->
+<view
+class='top flex border-b-1 center white-bg between '
+bindtap='uploadAudio'
+>
+  <view class='flex fon-28  center' >
+    <view class='c9f center flex bumen'>上传视频</view>
+    <view class='c17' >
+        <text>只可上传一个视频</text>
+        <text class=''> (苹果手机请横屏拍摄)</text>
+    </view>
+  </view>
+  <image class='jianPi' mode='widthFix' src='../../images/jia_07.png'></image>
+</view>
+<view wx:if='{{video}}' class='top flex border-b-1 center white-bg  relative' style='height:200rpx'>
+  <!-- <view class='masker' style='width:100%;height:250rpx;position:absolute;background:rgba(0,0,0,0);z-index:10'></view> -->
+  <view class='c9f flex bumen fon-28 '>视频展示</view>
+  <view class='relative'>
+  <view class='del-video-btn' bindtap='delVideo'>X</view>
+    <!-- <video
+    style='width:120rpx;height:150rpx;'
+    src='{{preVideo}}'
+    controls="false"
+    duration='0'
+    webkit-playsinline="true" 
+    x-webkit-airplay="true"
+    playsinline="true"
+    show-fullscreen-btn="false"
+    object-fit="fill"
+    ></video> -->
+    <image src='../../images/shipin.jpg' style='width:120rpx' mode='widthFix' bindtap='navToPreVideo'></image>
+  </view>
+  </view>
+</view>
+
+<view  class='mar-b-50'></view>
+
+<!-- <view class='footer' bindtap='submitAll'>提交</view>  -->
+<view class='top flex border-b-1 white-bg between fix-footer z-1000'>
+    <!-- <view class=' center flex btn-save' bindtap='saveMsg'>保存</view> -->
+    <view class=' center flex btn-submit mar-b-50' bindtap='submitMsg'>提交</view>
+</view>
+</view>
+<view id='bottom' class='scroll-view-item'></view>
+<!-- <view class='video-mask'>
+<view class='close-video'>X</view>
+  
+    <video src='https://zb.1-zhao.com/FileUplow/20180606/faa47245-90dc-4763-a546-655dce33d52e24.mp4'
+    class='prevideo'
+    mode='widthFix'
+    ></video>
+</view> -->
+<!-- </scroll-view> -->

@@ -1,0 +1,5 @@
+<!--pages/bus/bus.wxml-->
+<text></text>
+<view>
+<button class='btn' bindtap='navToQuality'>前往提交质保申请</button>
+</view>

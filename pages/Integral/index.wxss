@@ -1,0 +1,15 @@
+/* pages/Integral/index.wxss */
+.top{
+  padding-left: 20rpx;
+  height: 98rpx;
+}
+.img{
+  width: 43rpx;
+  margin-right: 20rpx;
+}
+.mmid{
+  padding: 20rpx;
+}
+.margin-b-10{
+  margin-bottom: 10rpx;
+}

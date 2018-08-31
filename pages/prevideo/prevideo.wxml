@@ -1,0 +1,9 @@
+<!--pages/prevideo/prevideo.wxml-->
+<view class='video-mask'>
+ <!-- <view class='close-video' bindtap='navToQuality'>X</view>  -->
+    <video src='{{video}}'
+    class='prevideo'
+    mode='widthFix'
+    show-fullscreen-btn="false"
+    ></video>
+</view>

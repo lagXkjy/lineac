@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/Quality/index",
+    "pages/login/login",
+   "pages/prevideo/prevideo",
+    "pages/bus/bus",
+      "pages/newindex/index",
+      "pages/getOpenId/index",
+      "pages/uploadAudio/index",
+      "pages/successTips/index",
+      "pages/My/index",
+      "pages/feedback/index",
+      "pages/Integral/index",
+      "pages/index/index"
+  ],
+  "window": {
+    "backgroundColor": "#000",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "Wafer Quick Start",
+    "navigationBarTextStyle": "#fff"
+  }
+}

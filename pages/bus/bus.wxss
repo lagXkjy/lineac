@@ -1,0 +1,12 @@
+/* pages/bus/bus.wxss */
+.btn{
+  width:80%;
+  background: #0099cc;
+  color: #fff;
+  margin: auto;
+  padding: 5rpx;
+  justify-content: center;
+  border: 1rpx solid #0099cc;
+  border-radius: 5rpx;
+  margin-top: 200rpx;
+}
